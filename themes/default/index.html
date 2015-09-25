@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>{{ meta.title }}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="{{ meta.description }}">
+        <meta name="robots" content="{{ meta.robots }}">
+        <link rel="stylesheet" href="{{ theme_url }}/style.css" type="text/css">
+    </head>
+    
+    <body>
+
+        <header>
+            <div class="inner">
+                <h1><a href="{{ base_url }}" id="logo">{{ site_title }}</a></h1>
+                <nav>
+                    <a href="#" class="menu-icon"></a>
+                    <ul>
+                        {% for page in pages %}
+                            <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+	</header>
+
+	<section>
+            <div class="inner">
+                {{ content }}
+                Hello {{ visitor }}. It is currently {{ date }}.
+            </div>
+	</section>
+	
+	<footer>
+            <div class="inner">
+                Copyright &copy; {{ date_year }}
+            </div>
+	</footer>
+        
+    </body>
+    
+</html>
+<body>
+
+
+    
+</body>
+</html>
