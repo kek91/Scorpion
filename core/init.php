@@ -7,14 +7,16 @@ define('SCORPION_DIR_CONTENT', SCORPION_DIR_ROOT.'content/');
 define('SCORPION_DIR_UPLOAD', SCORPION_DIR_ROOT.'content/upload/');
 define('SCORPION_DIR_CACHE', SCORPION_DIR_ROOT.'content/cache/');
 define('SCORPION_DIR_THEMES', SCORPION_DIR_ROOT.'themes/');
+define('SCORPION_CONTENT_EXT', '.md');
 define('SCORPION_SESSION', 'cred');
 define('SCORPION_TOKEN', 'token');
 define('SCORPION_VERSION_MAJOR', 0);
 define('SCORPION_VERSION_MINOR', 1);
 define('SCORPION_VERSION_PATCH', 0);
+define('SCORPION_DATE_FORMAT', '%D %T'); // Set the PHP date format as described here: http://php.net/manual/en/function.strftime.php
 
-require_once('config.php');
-require_once('users.php');
+include_once(SCORPION_DIR_ROOT.'core/config.php');
+include_once(SCORPION_DIR_ROOT.'core/users.php');
 
 if(SCORPION_DEVMODE) {
     error_reporting(E_ALL);

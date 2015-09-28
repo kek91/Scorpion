@@ -1,6 +1,12 @@
 <?php
 
-$config['site_name'] = 'Scorpion';
+$config = array(
+    
+    'site_title' => 'Scorpion'
+    
+);
+
+//$config['site_title'] = 'Scorpion';
 
 /* The site_meta_* variables can be edited per page also */
 $config['site_meta_title'] = 'Scorpion CMS';
@@ -20,5 +26,3 @@ date_default_timezone_set('Europe/Oslo');
 
 /* Don't remove this line */
 return $config;
-
-

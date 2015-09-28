@@ -18,9 +18,10 @@
                 <nav>
                     <a href="#" class="menu-icon"></a>
                     <ul>
-                        {% for page in pages %}
-                            <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-                        {% endfor %}
+                        <li><a href="home">Home</a></li>
+                        <li><a href="about">About</a></li>
+                        <li><a href="contact">Contact</a></li>
+                        <li><a href="blog">Blog</a></li>
                     </ul>
                 </nav>
             </div>
@@ -28,7 +29,13 @@
 
 	<section>
             <div class="inner">
+                <b>meta</b>:<br>
+                {{ meta }}
+                <br><br>
+                <b>content</b>:<br>
                 {{ content }}
+                <br><br>
+                <b>test visitor / date</b>:<br>
                 Hello {{ visitor }}. It is currently {{ date }}.
             </div>
 	</section>

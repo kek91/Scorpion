@@ -18,6 +18,11 @@ class Template
     public function set($array)
     {
         foreach($array as $key => $value) {
+            if(is_array($value)) {
+                foreach($value as $newkey => $newvalue) {
+                    $this->_values[$key.'.'.$newkey] = $newvalue;
+                }
+            }
             $this->_values[$key] = $value;
         }
     }

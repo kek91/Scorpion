@@ -3,7 +3,6 @@ include_once("core/init.php");
 
 $scorpion = new Scorpion();
 
-
 $scorpion->start();
 
 
