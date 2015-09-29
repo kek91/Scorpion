@@ -23,7 +23,9 @@ class Template
                     $this->_values[$key.'.'.$newkey] = $newvalue;
                 }
             }
-            $this->_values[$key] = $value;
+            else {
+                $this->_values[$key] = $value;
+            }
         }
     }
 
@@ -36,6 +38,11 @@ class Template
             $output = str_replace($tagToReplace, $value, $output);
         }
 
+        if(SCORPION_DEVMODE) {
+            echo '<pre>';
+            print_r($this->_values);
+            echo '</pre>';
+        }
         echo $output;
     }
 
