@@ -10,16 +10,30 @@ class Scorpion
             
     public function __construct()
     {
-        /* get config */
-        
-        /* If Scorpion NOT installed, do installation */
-        
-        /* Else, start() (?) */
-        
-        /* get_files */
+        $this->_config['header_title']          = isset($this->_config['header_title'])          ? $this->_config['header_title']          : 'Scorpion CMS';
+        $this->_config['header_slogan']         = isset($this->_config['header_slogan'])         ? $this->_config['header_slogan']         : 'This is our slogan';
+        $this->_config['site_meta_title']       = isset($this->_config['site_meta_title'])       ? $this->_config['site_meta_title']       : 'Scorpion';
+        $this->_config['site_meta_description'] = isset($this->_config['site_meta_description']) ? $this->_config['site_meta_description'] : 'Scorpion isa flat-file based content management system';
+        $this->_config['theme']                 = isset($this->_config['theme'])                 ? $this->_config['theme']                 : 'default';
+        $this->_config['navigation']            = isset($this->_config['navigation'])            ? $this->_config['navigation']            : 'Home, About, Contact, References, Source, Contact';
+        $this->_config['cache']                 = isset($this->_config['cache'])                 ? $this->_config['cache']                 : 'false';
+        $this->_config['cache_time']            = isset($this->_config['cache_time'])            ? $this->_config['cache_time']            : '604800';
+        $this->_config['date_year']             = isset($this->_config['date_year'])             ? $this->_config['date_year']             : date("Y");
+        $this->_config['date']                  = isset($this->_config['date'])                  ? $this->_config['date']                  : date("d.m.Y H:i:s");
+
+        if(SCORPION_DEVMODE) {
+            echo '<pre>';
+            print_r($this->_config);
+            echo '</pre>';
+        }
+ 
+        /*
+         * Check if ScorpionCMS is installed...
+         */
+
     }
     
-    public function start()
+    public function show()
     {
         $url = '';
         $request_url = (isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : '';
@@ -54,122 +68,32 @@ class Scorpion
             header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
         }
 
+        $navigation = $this->generate_navigation();
         $meta = $this->read_file_meta($content);
         $content = $this->parse_content($content);
         
-//        $filelist = get_files();
-//        $pages = get_pages($filelist);
-        
         $website = new Template($this->get_theme_path());
         $codes = array(
-            'site_title' => 'test, fix this to $config getter',
-            'pages' => "--ListAllPages--",
-            'meta' => $meta,
-            'content' => $content,
-            'comments' => "--Comments--",
-            'addcomment' => "--Add comment--",
-            'theme_path' => $this->get_theme_path(),
-            'theme_url' => $this->base_url() . '/' . basename(SCORPION_DIR_THEMES) . '/' . $this->get_theme(),
-            'visitor' => $_SERVER['REMOTE_ADDR'],
-            'date' => date("d.m.Y H:i:s"),
-            'date_year' => date("Y")
+            'header_title'      => $this->get_config('header_title'),
+            'header_slogan'     => $this->get_config('header_slogan'),
+            'meta'              => $meta,
+            'content'           => $content,
+            'navigation'        => $navigation,
+            'comments'          => "--Comments--",
+            'addcomment'        => "--Add comment--",
+            'theme_path'        => $this->get_theme_path(),
+            'theme_url'         => $this->base_url() . '/' . basename(SCORPION_DIR_THEMES) . '/' . $this->get_config('theme'),
+            'visitor'           => $_SERVER['REMOTE_ADDR'],
+            'date'              => date("d.m.Y H:i:s"),
+            'date_year'         => date("Y")
         );
+
         $website->set($codes);
         $website->output();
     }
  
-    private function get_files($directory = SCORPION_DIR_CONTENT, $ext = SCORPION_CONTENT_EXT)
-    {
-        $filelist = array();
-        if($files = scandir($directory)) {
-            foreach($files as $file) {
-                if(in_array(substr($file, -1), array('~', '#'))) {
-                    continue;
-                }
-                if(preg_match("/^(^\.)/", $file) === 0) {
-                    if(is_dir($directory . "/" . $file)) {
-                        $filelist = array_merge($filelist, $this->get_files($directory . "/" . $file, $ext));
-                    }
-                    else {
-                        $file = $directory . "/" . $file;
-                        if(!$ext || strstr($file, $ext)) {
-                            $filelist[] = preg_replace("/\/\//si", "/", $file);
-                        }
-                    }
-                }
-            }
-        }
-        return $filelist;
-    }
     
-    /**
-     * Get a list of pages
-     *
-     * @param string $base_url the base URL of the site
-     * @param string $order_by order by "alpha" or "date"
-     * @param string $order order "asc" or "desc"
-     * @return array $sorted_pages an array of pages
-     */
-    protected function get_pages($filelist, $base_url, $order_by = 'date', $order = 'desc', $excerpt_length = 50)
-    {
-        $config = $this->config;
-
-//        $pages = $this->get_files($config['content_dir'], CONTENT_EXT);
-        $pages = $filelist;
-        $sorted_pages = array();
-        $date_id = 0;
-        foreach ($pages as $key => $page) {
-            // Skip 404
-            if (basename($page) == '404' . CONTENT_EXT) {
-                unset($pages[$key]);
-                continue;
-            }
-            // Get title and format $page
-            $page_content = file_get_contents($page);
-            $page_meta = $this->read_file_meta($page_content);
-            $page_content = $this->parse_content($page_content);
-//            $url = str_replace($config['content_dir'], $base_url . '/', $page);
-            
-            $url = str_replace(SCORPION_DIR_CONTENT, $this->base_url().'/', $page);
-            
-//            $url = $this->base_url() . '/' . basename(SCORPION_DIR_THEMES) . '/' . $this->get_theme(),
-            $url = str_replace('index' . CONTENT_EXT, '', $url);
-            $url = str_replace(SCORPION_CONTENT_EXT, '', $url);
-            $data = array(
-                'url' => $url,
-                'title' => isset($page_meta['title']) ? $page_meta['title'] : '',
-                'description' => isset($page_meta['description']) ? $page_meta['description'] : '',
-                'excerpt' => $this->limit_words(strip_tags($page_content), $excerpt_length),
-                'author' => isset($page_meta['author']) ? $page_meta['author'] : '',
-                'date' => isset($page_meta['date']) ? $page_meta['date'] : '',
-                'date_formatted' => isset($page_meta['date']) ? utf8_encode(strftime(SCORPION_DATE_FORMAT, strtotime($page_meta['date']))) : '',
-                'category' => isset($page_meta['category']) ? $page_meta['category'] : '',
-                'content' => $page_content
-            );
-
-            if ($order_by == 'date' && isset($page_meta['date'])) {
-                $sorted_pages[$page_meta['date'] . $date_id] = $data;
-                $date_id++;
-            } else {
-                $sorted_pages[$page] = $data;
-            }
-        }
-
-        if ($order == 'desc') {
-            krsort($sorted_pages);
-        } else {
-            ksort($sorted_pages);
-        }
-
-        return $sorted_pages;
-    }
     
-    /**
-     * Parses the file meta from the txt file header
-     *
-     * @param string $content the raw txt content
-     * @return array $headers an array of meta values
-     */
     private function read_file_meta($content)
     {
         $headers = array(
@@ -181,8 +105,6 @@ class Scorpion
             'template' => 'Template',
             'category' => 'Category'
         );
-
-
         foreach ($headers as $field => $regex) {
             if (preg_match('/^[ \t\/*#@]*' . preg_quote($regex, '/') . ':(.*)$/mi', $content, $match) && $match[1]) {
                 $headers[$field] = trim(preg_replace("/\s*(?:\*\/|\?>).*/", '', $match[1]));
@@ -191,23 +113,23 @@ class Scorpion
                 $headers[$field] = '';
             }
         }
-
         if (isset($headers['date'])) {
             $headers['date_formatted'] = utf8_encode(strftime(SCORPION_DATE_FORMAT, strtotime($headers['date'])));
         }
-
         return $headers;
     }
+    
+    
     
     private function parse_content($content)
     {
         $content = preg_replace('#/\*.+?\*/#s', '', $content, 1); // Remove first comment (with meta)
-//        $content = str_replace('%base_url%', $this->base_url(), $content);
         $parsedown = new ParsedownExtra();
 	$content = $parsedown->text($content);
-
         return $content;
     }
+    
+    
     
     private function limit_words($string, $word_limit)
     {
@@ -219,6 +141,8 @@ class Scorpion
 
         return $excerpt;
     }
+    
+    
     
     private function base_url()
     {
@@ -235,6 +159,8 @@ class Scorpion
         return rtrim(str_replace($url, '', $protocol . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']), '/');
     }
 
+    
+    
     private function get_protocol()
     {
         if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' && $_SERVER['HTTPS'] != '') {
@@ -248,48 +174,49 @@ class Scorpion
     
     
     
-    
-    
-     /* Getters */
-    
-    public function get_theme()
+    private function generate_navigation()
     {
-        return $this->_theme;
+        if(!empty($this->get_config('navigation'))) {
+            $nav = explode(',', $this->get_config('navigation'));
+            $navigation = '<ul>';
+            foreach($nav as $navitem) {
+                $navitem = strtolower(escape(trim($navitem)));
+                $navigation .= '<li><a href="'.$navitem.'">'.$navitem.'</a></li>';
+            }
+            $navigation .= '</ul>';
+            return $navigation;
+        }
+        return false;
     }
+    
+    
+    
+    
+    
+     /* 
+      * Getters 
+      */
+    
     public function get_theme_path()
     {
-        return SCORPION_DIR_THEMES . $this->_theme . '/';
+        return SCORPION_DIR_THEMES . $this->get_config('theme') . '/';
     }
     
-    public function get_config()
+    public function get_config($key)
     {
-        include_once(SCORPION_DIR_ROOT.'core/config.php');
-        $this->_config = array_merge($config, $this->_config);
-    }
-    
-    public function get($property)
-    {
-        $match = '';
-        $property = '_' . escape($property);
-        foreach($this as $key => $val) {
-            if($property == $key) {
-                $match = $val;
-                break;
-            }
+        if(isset($this->_config[escape($key)])) {
+            return $this->_config[escape($key)];
         }
-        if(!empty($match)) {
-            return $match;
-        }
-        else {
-            return "$property not found";
-        }
+        return false;
     }
     
     
     
     
     
-    /* Setters */
+    /* 
+     * Setters 
+     */
     
     public function set_theme($theme)
     {
@@ -301,4 +228,118 @@ class Scorpion
         return false;
     }
     
+    public function set_config($key, $value)
+    {
+        if($this->_config[escape($key)] = escape($value)) {
+            return true;
+        }
+        return false;
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    private function get_files($directory = SCORPION_DIR_CONTENT, $ext = SCORPION_CONTENT_EXT)
+//    {
+//        $filelist = array();
+//        if($files = scandir($directory)) {
+//            foreach($files as $file) {
+//                if(in_array(substr($file, -1), array('~', '#'))) {
+//                    continue;
+//                }
+//                if(preg_match("/^(^\.)/", $file) === 0) {
+//                    if(is_dir($directory . "/" . $file)) {
+//                        $filelist = array_merge($filelist, $this->get_files($directory . "/" . $file, $ext));
+//                    }
+//                    else {
+//                        $file = $directory . "/" . $file;
+//                        if(!$ext || strstr($file, $ext)) {
+//                            $filelist[] = preg_replace("/\/\//si", "/", $file);
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        return $filelist;
+//    }
+//    
+//    /**
+//     * Get a list of pages
+//     *
+//     * @param string $base_url the base URL of the site
+//     * @param string $order_by order by "alpha" or "date"
+//     * @param string $order order "asc" or "desc"
+//     * @return array $sorted_pages an array of pages
+//     */
+//    protected function get_pages($filelist, $base_url, $order_by = 'date', $order = 'desc', $excerpt_length = 50)
+//    {
+//        $config = $this->config;
+//
+////        $pages = $this->get_files($config['content_dir'], CONTENT_EXT);
+//        $pages = $filelist;
+//        $sorted_pages = array();
+//        $date_id = 0;
+//        foreach ($pages as $key => $page) {
+//            // Skip 404
+//            if (basename($page) == '404' . CONTENT_EXT) {
+//                unset($pages[$key]);
+//                continue;
+//            }
+//            // Get title and format $page
+//            $page_content = file_get_contents($page);
+//            $page_meta = $this->read_file_meta($page_content);
+//            $page_content = $this->parse_content($page_content);
+////            $url = str_replace($config['content_dir'], $base_url . '/', $page);
+//            
+//            $url = str_replace(SCORPION_DIR_CONTENT, $this->base_url().'/', $page);
+//            
+////            $url = $this->base_url() . '/' . basename(SCORPION_DIR_THEMES) . '/' . $this->get_theme(),
+//            $url = str_replace('index' . CONTENT_EXT, '', $url);
+//            $url = str_replace(SCORPION_CONTENT_EXT, '', $url);
+//            $data = array(
+//                'url' => $url,
+//                'title' => isset($page_meta['title']) ? $page_meta['title'] : '',
+//                'description' => isset($page_meta['description']) ? $page_meta['description'] : '',
+//                'excerpt' => $this->limit_words(strip_tags($page_content), $excerpt_length),
+//                'author' => isset($page_meta['author']) ? $page_meta['author'] : '',
+//                'date' => isset($page_meta['date']) ? $page_meta['date'] : '',
+//                'date_formatted' => isset($page_meta['date']) ? utf8_encode(strftime(SCORPION_DATE_FORMAT, strtotime($page_meta['date']))) : '',
+//                'category' => isset($page_meta['category']) ? $page_meta['category'] : '',
+//                'content' => $page_content
+//            );
+//
+//            if ($order_by == 'date' && isset($page_meta['date'])) {
+//                $sorted_pages[$page_meta['date'] . $date_id] = $data;
+//                $date_id++;
+//            } else {
+//                $sorted_pages[$page] = $data;
+//            }
+//        }
+//
+//        if ($order == 'desc') {
+//            krsort($sorted_pages);
+//        } else {
+//            ksort($sorted_pages);
+//        }
+//
+//        return $sorted_pages;
+//    }

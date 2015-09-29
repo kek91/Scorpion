@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-    
     <head>
         <title>{{ meta.title }}</title>
         <meta charset="UTF-8">
@@ -14,29 +13,19 @@
 
         <header>
             <div class="inner">
-                <h1><a href="{{ base_url }}" id="logo">{{ site_title }}</a></h1>
+                <h1><a href="{{ base_url }}" id="logo">{{ header_title }}</a></h1>
                 <nav>
                     <a href="#" class="menu-icon"></a>
-                    <ul>
-                        <li><a href="home">Home</a></li>
-                        <li><a href="about">About</a></li>
-                        <li><a href="contact">Contact</a></li>
-                        <li><a href="blog">Blog</a></li>
-                    </ul>
+                    {{ navigation }}
                 </nav>
+                <div class="clearboth"></div>
+                <h2>{{ header_slogan }}</h2>
             </div>
 	</header>
 
 	<section>
             <div class="inner">
-                <b>meta</b>:<br>
-                {{ meta }}
-                <br><br>
-                <b>content</b>:<br>
                 {{ content }}
-                <br><br>
-                <b>test visitor / date</b>:<br>
-                Hello {{ visitor }}. It is currently {{ date }}.
             </div>
 	</section>
 	
