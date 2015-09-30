@@ -31,7 +31,12 @@ $scorpion->set_config('theme', 'default');
  * 
  * After setting the config 'navigation' field you may show the navigation in your theme file by simply writing {{ navigation }}
  */
-$scorpion->set_config('navigation', 'Home, Docs, Screenshots, Source');
+$scorpion->set_config('navigation', 'Home, Download, Screenshots, Docs, Source');
+
+/*
+ * Chose what navigation link should lead to your index.md file
+ */
+$scorpion->set_config('index', 'Home');
 
 /*
  * Enabling caching will reduce server resources

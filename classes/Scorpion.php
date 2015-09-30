@@ -15,7 +15,8 @@ class Scorpion
         $this->_config['site_meta_title']       = isset($this->_config['site_meta_title'])       ? $this->_config['site_meta_title']       : 'Scorpion';
         $this->_config['site_meta_description'] = isset($this->_config['site_meta_description']) ? $this->_config['site_meta_description'] : 'Scorpion isa flat-file based content management system';
         $this->_config['theme']                 = isset($this->_config['theme'])                 ? $this->_config['theme']                 : 'default';
-        $this->_config['navigation']            = isset($this->_config['navigation'])            ? $this->_config['navigation']            : 'Home, Docs, Screenshots, Source';
+        $this->_config['navigation']            = isset($this->_config['navigation'])            ? $this->_config['navigation']            : 'Home, Download, Screenshots, Docs, Source';
+        $this->_config['index']                 = isset($this->_config['index'])                 ? $this->_config['index']                 : 'Home';
         $this->_config['cache']                 = isset($this->_config['cache'])                 ? $this->_config['cache']                 : 'false';
         $this->_config['cache_time']            = isset($this->_config['cache_time'])            ? $this->_config['cache_time']            : '604800';
         $this->_config['date_year']             = isset($this->_config['date_year'])             ? $this->_config['date_year']             : date("Y");
@@ -38,7 +39,6 @@ class Scorpion
         $url = '';
         $request_url = (isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : '';
         $script_url = (isset($_SERVER['PHP_SELF'])) ? $_SERVER['PHP_SELF'] : '';
-
         // Get our url path and trim the / of the left and the right
         if ($request_url != $script_url) {
             $url = trim(preg_replace('/' . str_replace('/', '\/', str_replace('index.php', '', $script_url)) . '/', '',
@@ -47,8 +47,13 @@ class Scorpion
         $url = preg_replace('/\?.*/', '', $url); // Strip query string
 
         if ($url) {
-            $file = SCORPION_DIR_CONTENT . $url;
-        } 
+            if($url == strtolower($this->get_config('index'))) {
+                $file = SCORPION_DIR_CONTENT . 'index';
+            }
+            else {
+                $file = SCORPION_DIR_CONTENT . $url;
+            }
+        }
         else {
             $file = SCORPION_DIR_CONTENT . 'index';
         }
