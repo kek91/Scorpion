@@ -28,8 +28,10 @@ $scorpion->set_config('theme', 'default');
  * Scorpion will automatically find the corresponding filename so you don't have to enter filepaths or .md extension etc.
  * 
  * For the default links below, Scorpion will look for /scorpion/content/home.md, about.md, contact.md, references.md, source.md and contact.md
+ * 
+ * After setting the config 'navigation' field you may show the navigation in your theme file by simply writing {{ navigation }}
  */
-$scorpion->set_config('navigation', 'Home, About, Contact, References, Source, Contact');
+$scorpion->set_config('navigation', 'Home, Docs, Screenshots, Source');
 
 /*
  * Enabling caching will reduce server resources
