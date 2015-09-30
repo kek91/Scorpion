@@ -1,9 +1,16 @@
 /*
 Title: Docs
-Description: Docs
+Description: Documentation for Scorpion CMS
 Author: Scorpion
 Date: 2015/09/30
 */
+
+<i class="icon-document"></i> Documentation
+=====
+
+<button>Install instructions</button>
+<button>Markdown cheatsheet</button>
+
 
 Cheatsheet for Markdown
 =====

@@ -1,9 +1,12 @@
 /*
-Title: About
-Description: About this website
+Title: Screenshots
+Description: Screenshots of Scorpion CMS
 */
 
-# About
+<i class="icon-screenshot"></i> Screenshots
+=====
+
+Coming...
 
 ```
 test
