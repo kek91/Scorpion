@@ -15,7 +15,7 @@ class Scorpion
         $this->_config['site_meta_title']       = isset($this->_config['site_meta_title'])       ? $this->_config['site_meta_title']       : 'Scorpion';
         $this->_config['site_meta_description'] = isset($this->_config['site_meta_description']) ? $this->_config['site_meta_description'] : 'Scorpion isa flat-file based content management system';
         $this->_config['theme']                 = isset($this->_config['theme'])                 ? $this->_config['theme']                 : 'default';
-        $this->_config['navigation']            = isset($this->_config['navigation'])            ? $this->_config['navigation']            : 'Home, About, Contact, References, Source, Contact';
+        $this->_config['navigation']            = isset($this->_config['navigation'])            ? $this->_config['navigation']            : 'Home, Docs, Screenshots, Source';
         $this->_config['cache']                 = isset($this->_config['cache'])                 ? $this->_config['cache']                 : 'false';
         $this->_config['cache_time']            = isset($this->_config['cache_time'])            ? $this->_config['cache_time']            : '604800';
         $this->_config['date_year']             = isset($this->_config['date_year'])             ? $this->_config['date_year']             : date("Y");
@@ -60,11 +60,11 @@ class Scorpion
             $file .= SCORPION_CONTENT_EXT;
         }
 
-        if (file_exists($file)) {
+        if(file_exists($file)) {
             $content = file_get_contents($file);
         } 
         else {
-            $content = file_get_contents(SCORPION_DIR_CONTENT . '404' . CONTENT_EXT);
+            $content = file_get_contents(SCORPION_DIR_CONTENT . '404' . SCORPION_CONTENT_EXT);
             header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
         }
 
@@ -83,6 +83,7 @@ class Scorpion
             'addcomment'        => "--Add comment--",
             'theme_path'        => $this->get_theme_path(),
             'theme_url'         => $this->base_url() . '/' . basename(SCORPION_DIR_THEMES) . '/' . $this->get_config('theme'),
+            'base_url'          => $this->base_url(),
             'visitor'           => $_SERVER['REMOTE_ADDR'],
             'date'              => date("d.m.Y H:i:s"),
             'date_year'         => date("Y")
@@ -180,8 +181,8 @@ class Scorpion
             $nav = explode(',', $this->get_config('navigation'));
             $navigation = '<ul>';
             foreach($nav as $navitem) {
-                $navitem = strtolower(escape(trim($navitem)));
-                $navigation .= '<li><a href="'.$navitem.'">'.$navitem.'</a></li>';
+                $navitem = escape(trim($navitem));
+                $navigation .= '<li><a href="'.strtolower($navitem).'">'.$navitem.'</a></li>';
             }
             $navigation .= '</ul>';
             return $navigation;
