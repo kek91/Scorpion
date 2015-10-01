@@ -36,19 +36,26 @@ class Scorpion
     
     public function show()
     {
-        $url = '';
-        $request_url = (isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : '';
-        $script_url = (isset($_SERVER['PHP_SELF'])) ? $_SERVER['PHP_SELF'] : '';
-        // Get our url path and trim the / of the left and the right
-        if ($request_url != $script_url) {
-            $url = trim(preg_replace('/' . str_replace('/', '\/', str_replace('index.php', '', $script_url)) . '/', '',
-                $request_url, 1), '/');
-        }
-        $url = preg_replace('/\?.*/', '', $url); // Strip query string
+//        $url = '';
+//        $request_url = (isset($_SERVER['REQUEST_URI'])) ? $_SERVER['REQUEST_URI'] : '';
+//        $script_url = (isset($_SERVER['PHP_SELF'])) ? $_SERVER['PHP_SELF'] : '';
+//        // Get our url path and trim the / of the left and the right
+//        if ($request_url != $script_url) {
+//            $url = trim(preg_replace('/' . str_replace('/', '\/', str_replace('index.php', '', $script_url)) . '/', '',
+//                $request_url, 1), '/');
+//        }
+//        $url = preg_replace('/\?.*/', '', $url); // Strip query string
+        
+        $url = explode('/', $_SERVER['REQUEST_URI']);
+        $url = escape($url[count($url)-1]);
 
         if ($url) {
             if($url == strtolower($this->get_config('index'))) {
                 $file = SCORPION_DIR_CONTENT . 'index';
+            }
+            elseif(strstr($url, 'admin')) {
+                Redirect::to(SCORPION_DIR_ADMIN.'index.php');
+                die();
             }
             else {
                 $file = SCORPION_DIR_CONTENT . $url;
