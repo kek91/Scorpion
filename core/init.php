@@ -3,6 +3,7 @@ session_start();
 
 define('SCORPION_DEVMODE', false);
 define('SCORPION_DIR_ROOT', realpath(__DIR__ . '/..') . '/');
+define('SCORPION_DIR_ADMIN', SCORPION_DIR_ROOT.'admin/');
 define('SCORPION_DIR_CONTENT', SCORPION_DIR_ROOT.'content/');
 define('SCORPION_DIR_UPLOAD', SCORPION_DIR_ROOT.'content/upload/');
 define('SCORPION_DIR_CACHE', SCORPION_DIR_ROOT.'content/cache/');
