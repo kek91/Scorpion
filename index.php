@@ -10,6 +10,10 @@ $scorpion = new Scorpion();
  * Configuration options 
  */
 
+/*
+ * Typically items you wish to output in your header
+ * For example, put this in your theme index.html: {{ header_title }}
+ */
 $scorpion->set_config('header_title', 'Scorpion CMS');
 $scorpion->set_config('header_slogan', 'Sure is');
 $scorpion->set_config('header_logo', 'path/to/logo.png');
