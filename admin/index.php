@@ -1,9 +1,24 @@
 <?php
 include_once("../core/init.php");
-echo '<h1>Scorpion CMS Admin</h1>';
+include_once("themes/default/header.html");
 
 $url = explode('/', $_SERVER['REQUEST_URI']);
 $url = escape($url[count($url)-1]);
+
+$user = new User("kek");
+$userdata = $user->data();
+
+echo '<br><br>';
+
+echo $userdata->username;
+echo '<br>';
+//echo $user->data()->username;
+
+echo '<pre>';
+print_r($user->data());
+echo '</pre>';
+
+echo '<br><br>';
 
 echo $url;
 
@@ -16,23 +31,7 @@ print_r($_SERVER);
 echo '</pre>';
 
 echo '<br><br>';
-echo 'Hallo...';
 
-//include_once("core/init.php");
-//
-//
-////include_once("resources/header.php");
-//
-//if(Session::exists("error")) {
-//    echo '<div class="unsuccessful">'.Session::flash("error").'</div>';
-//}
-//
-//$user = new User();
-//if($user->isLoggedIn()) {
-//    Redirect::to("main.php");
-//}
-//else {
-//    include("inc/login.php");
-//}
-//
-//include_once("resources/footer.php");
+
+
+include_once("themes/default/footer.html");
