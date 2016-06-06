@@ -9,11 +9,11 @@ Date: 2015/09/30
 <div class="bss-slides">
 
     <figure>
-        <img src="http://localhost/scorpion/themes/default/images/scorpion-ss1.png" width="100%">
+        <img src="themes/default/images/scorpion-ss1.png" width="100%">
     </figure>
 
     <figure>
-        <img src="http://localhost/scorpion/themes/default/images/scorpion-ss2.png" width="100%">
+        <img src="themes/default/images/scorpion-ss2.png" width="100%">
     </figure>
 
 </div> 

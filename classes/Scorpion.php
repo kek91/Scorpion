@@ -13,7 +13,7 @@ class Scorpion
         $this->_config['header_title']          = isset($this->_config['header_title'])          ? $this->_config['header_title']          : 'Scorpion CMS';
         $this->_config['header_slogan']         = isset($this->_config['header_slogan'])         ? $this->_config['header_slogan']         : 'This is our slogan';
         $this->_config['site_meta_title']       = isset($this->_config['site_meta_title'])       ? $this->_config['site_meta_title']       : 'Scorpion';
-        $this->_config['site_meta_description'] = isset($this->_config['site_meta_description']) ? $this->_config['site_meta_description'] : 'Scorpion isa flat-file based content management system';
+        $this->_config['site_meta_description'] = isset($this->_config['site_meta_description']) ? $this->_config['site_meta_description'] : 'Scorpion is a flat-file based content management system';
         $this->_config['theme']                 = isset($this->_config['theme'])                 ? $this->_config['theme']                 : 'default';
         $this->_config['navigation']            = isset($this->_config['navigation'])            ? $this->_config['navigation']            : 'Home, Download, Screenshots, Docs, Source';
         $this->_config['index']                 = isset($this->_config['index'])                 ? $this->_config['index']                 : 'Home';

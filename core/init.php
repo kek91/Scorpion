@@ -16,7 +16,6 @@ define('SCORPION_VERSION_MINOR', 1);
 define('SCORPION_VERSION_PATCH', 0);
 define('SCORPION_DATE_FORMAT', '%D %T'); // Set the PHP date format as described here: http://php.net/manual/en/function.strftime.php
 
-include_once(SCORPION_DIR_ROOT.'core/config.php');
 include_once(SCORPION_DIR_ROOT.'core/users.php');
 
 if(SCORPION_DEVMODE) {
