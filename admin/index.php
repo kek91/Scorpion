@@ -1,17 +1,34 @@
 <?php
-//echo phpinfo();
-//$url = explode('/', $_SERVER['REQUEST_URI']);
-//$url = escape($url[count($url)-1]);
 include_once("../core/init.php");
 
 $user = new User();
+
+include_once("themes/default/header.php");
+
 if($user->isLoggedIn()) {
-    $userdata = $user->data();
-    include_once("themes/default/header.html");
-    echo '<h2>Welcome back, '.$userdata->name.'!</h2>';
+    $url = explode('/', $_SERVER['REQUEST_URI']);
+    $url = escape($url[count($url)-1]);
+    
+    if($url == "dashboard") {
+        include_once("inc/dashboard.php");
+    }
+    elseif($url == "posts") {
+        include_once("inc/posts.php");
+    }
+    elseif($url == "pages") {
+        include_once("inc/pages.php");
+    }
+    elseif($url == "media") {
+        include_once("inc/media.php");
+    }
+    elseif($url == "settings") {
+        include_once("inc/settings.php");
+    }
+    elseif($url == "logout") {
+        include_once("inc/logout.php");
+    }  
 }
 else {
-    include_once("themes/default/header-loggedout.html");
     include("inc/login.php");
 }
 

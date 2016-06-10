@@ -16,12 +16,12 @@ if(Input::exists())
 
             if($login)
             {
-                Session::flash('welcomeBack', 'Velkommen tilbake '.$user->data()->name.'!');
-                Redirect::to('main');
+                $_SESSION['welcome'] = 'Welcome back '.$user->data()->name.'!';
+                Redirect::to('dashboard');
             }
             else
             {
-                Session::flash('error', 'Feil brukernavn eller passord.');
+                $_SESSION['error'] = 'Wrong username or password.';
                 Redirect::to('login');
             }
         }
@@ -36,11 +36,8 @@ if(Input::exists())
         }
     }
 }
-echo Session::flash('error');
-echo Session::flash('welcomeBack');
 ?>
 
-<!--<div class="container-fluid" style="border-radius:5px; background:#333; padding:20px; color:#eee;">-->
 <h1>Login</h1>
 <form action="login" method="post">
     <input class="form-control" type="text" name="username" placeholder="Username/email"><br><br>
@@ -48,4 +45,3 @@ echo Session::flash('welcomeBack');
     <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
     <input class="btn btn-primary" type="submit" value="Submit">
 </form>
-<!--</div>-->

@@ -16,8 +16,8 @@ class User
 
     public function __construct($user = null)
     {
-        $this->userList = $GLOBALS['CONFIG']['SCORPION_USERS'];
-        $this->sessionName = SCORPION_SESSION;
+        $this->userList    = (array)$GLOBALS['CONFIG']['SCORPION_USERS'];
+        $this->sessionName = (string)SCORPION_SESSION;
         
         if(!$user) {
             if(Session::exists($this->sessionName)) {
@@ -52,6 +52,26 @@ class User
         return false;
     }
     
+    public function login($username = null, $password = null)
+    {
+        if(!$username && !$password && $this->exists())
+        {
+            Session::put($this->sessionName, $this->data()->username);
+        }
+        else
+        {
+            if($this->find($username))
+            {
+                if(password_verify($password, $this->data()->password))
+                {
+                    Session::put($this->sessionName, $this->data()->username);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
     public function exists()
     {
         return (!empty($this->userData)) ? true : false;
@@ -64,7 +84,7 @@ class User
 
     public function data()
     {
-        return $this->userData;
+        return (object)$this->userData;
     }
 
     public function isLoggedIn()
