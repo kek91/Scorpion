@@ -100,12 +100,17 @@ footer .inner a:hover {
     min-height:300px;
 }
 
-div#funny-quote {
-    font-size:14px;
+.alert a {
+    color:#fff;
+    /*font-weight:bold;*/
+}
+.alert blockquote {
+    color:#fff;
 }
 
-
-
+#chart-visitors-parent {
+    height:250px;
+}
 /*
 
 blockquote {
