@@ -3,30 +3,43 @@ include_once("../core/init.php");
 
 $user = new User();
 
-include_once("themes/default/header.php");
+include_once("themes/default/header.html");
+include_once("inc/modules/nav.php");
+include_once("themes/default/header2.html");
+include_once("inc/modules/showmessages.php");
+
 
 if($user->isLoggedIn()) {
     $url = explode('/', $_SERVER['REQUEST_URI']);
-    $url = escape($url[count($url)-1]);
-    
-    if($url == "dashboard") {
+    if(count($url) === 5) {
+        $page = escape($url[count($url)-2]);
+        $subpage = escape($url[count($url)-1]);
+    }
+    else {
+        $page = escape($url[count($url)-1]);
+    }
+            
+    if($page == "dashboard") {
         include_once("inc/dashboard.php");
     }
-    elseif($url == "posts") {
+    elseif($page == "posts") {
         include_once("inc/posts.php");
     }
-    elseif($url == "pages") {
+    elseif($page == "pages") {
         include_once("inc/pages.php");
     }
-    elseif($url == "media") {
+    elseif($page == "media") {
         include_once("inc/media.php");
     }
-    elseif($url == "settings") {
+    elseif($page == "settings") {
         include_once("inc/settings.php");
     }
-    elseif($url == "logout") {
+    elseif($page == "logout") {
         include_once("inc/logout.php");
-    }  
+    }
+    else {
+        include_once("inc/dashboard.php");
+    }
 }
 else {
     include("inc/login.php");
