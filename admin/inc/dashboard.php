@@ -1,6 +1,7 @@
 <h1>Dashboard</h1>
 
 <div class="alert alert-danger">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <b>Note - Scorpion CMS Beta</b><br><br>
     Statistics data on "Dashboard" are for demonstration purposes and not actually real data.
 </div>
