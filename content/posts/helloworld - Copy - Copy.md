@@ -1,10 +1,10 @@
 /*
-Title: Hello World
-Description: Hello world - test blog post
-Author: Kim Eirik Kvassheim
-Date: 2015/09/20
+Title: rutrum ante fermentum, euismod sapien.
+Description: rutrum ante fermentum, euismod sapien.
+Author: Ola Nordmann
+Date: 2015/09/10
 Type: post
-Category: General
+Category: Testing
 */
 
 # Hello world
@@ -18,4 +18,4 @@ Donec eu facilisis odio, quis aliquet nulla. Etiam eget lorem congue, mollis arc
 
 Nam facilisis, velit ut finibus tincidunt, eros tellus porttitor elit, et faucibus velit ex sit amet est. Maecenas pulvinar porta sagittis. In hac habitasse platea dictumst. Donec tempus nunc quis euismod pellentesque. Integer eget sapien lacus. Nulla gravida nisl neque, eget tempus massa posuere ut. Pellentesque tincidunt tellus diam, sit amet mollis odio ultricies vitae. Suspendisse porta sapien vel quam euismod euismod. Donec ullamcorper, ante eget placerat hendrerit, metus est tincidunt arcu, eu hendrerit sapien quam quis massa.
 
-Sed dictum a purus quis suscipit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dolor neque, dapibus sed augue eu, faucibus cursus dui. Maecenas tincidunt augue id nisl venenatis, ac varius elit laoreet. Curabitur sit amet convallis odio. Etiam fringilla turpis vitae quam porta pulvinar. Quisque facilisis velit leo, id efficitur est mollis et. Nam lobortis, dui sed venenatis condimentum, nisi nibh interdum risus, quis facilisis erat mauris quis massa. Nunc venenatis purus enim, nec ultricies est pellentesque vel. Nam ut purus quis mi hendrerit gravida. 
+Sed dictum a purus quis suscipit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dolor neque, dapibus sed augue eu, faucibus cursus dui. Maecenas tincidunt augue id nisl venenatis, ac varius elit laoreet. Curabitur sit amet convallis odio. Etiam fringilla turpis vitae quam porta pulvinar. Quisque facilisis velit leo, id efficitur est mollis et. Nam lobortis, dui sed venenatis condimentum, nisi nibh interdum risus, quis facilisis erat mauris quis massa. Nunc venenatis purus enim, nec ultricies est pellentesque vel. Nam ut purus quis mi hendrerit gravida.

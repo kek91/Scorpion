@@ -52,22 +52,24 @@ class Scorpion
         /*
          * TODO sjekk REQUEST_URI for antall. Hvis X, så betyr det at det er en subpost
          */
+        /*
+         * TODO eller... fortsett som før og bare list X category posts i get_pages()
+         */
         
         if ($url) {
             if($url == strtolower($this->get_config('index'))) {
-                $file = SCORPION_DIR_CONTENT_PAGES . 'index';
+                $file = SCORPION_DIR_CONTENT . 'index';
             }
             elseif(strstr($url, 'admin')) {
                 Redirect::to(SCORPION_DIR_ADMIN . 'index.php');
                 die();
             }
             else {
-                
                 $file = SCORPION_DIR_CONTENT . $url;
             }
         }
         else {
-            $file = SCORPION_DIR_CONTENT_PAGES . 'index';
+            $file = SCORPION_DIR_CONTENT . 'index';
         }
 
         if (is_dir($file)) {
@@ -81,7 +83,7 @@ class Scorpion
             $content = file_get_contents($file);
         }
         else {
-            $content = file_get_contents(SCORPION_DIR_CONTENT_PAGES . '404' . SCORPION_CONTENT_EXT);
+            $content = file_get_contents(SCORPION_DIR_CONTENT . '404' . SCORPION_CONTENT_EXT);
             header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
         }
 
@@ -121,7 +123,8 @@ class Scorpion
             'date' => 'Date',
             'robots' => 'Robots',
             'template' => 'Template',
-            'category' => 'Category'
+            'category' => 'Category',
+            'type' => 'Type'
         );
         foreach ($headers as $field => $regex) {
             if (preg_match('/^[ \t\/*#@]*' . preg_quote($regex, '/') . ':(.*)$/mi', $content, $match) && $match[1]) {
@@ -297,7 +300,7 @@ class Scorpion
      * @param string $order order "asc" or "desc"
      * @return array $sorted_pages an array of pages
      */
-    public function get_pages($base_url = '', $order_by = 'date', $order = 'desc', $excerpt_length = 50)
+    public function get_pages($type = '', $base_url = '', $order_by = 'date', $order = 'desc', $excerpt_length = 50)
     {
 //        $config = $this->config;
 //        $pages = $filelist;
@@ -315,10 +318,15 @@ class Scorpion
             $page_content = file_get_contents($page);
             $page_meta = $this->read_file_meta($page_content);
             $page_content = $this->parse_content($page_content);
+            
+            if(!empty($type)) {
+                if($page_meta['type'] != $type) {
+                    continue;
+                }
+            }
+            
 //            $url = str_replace($config['content_dir'], $base_url . '/', $page);
-            
             $url = str_replace(SCORPION_DIR_CONTENT, $this->base_url().'/', $page);
-            
 //            $url = $this->base_url() . '/' . basename(SCORPION_DIR_THEMES) . '/' . $this->get_theme(),
             $url = str_replace('index' . SCORPION_CONTENT_EXT, '', $url);
             $url = str_replace(SCORPION_CONTENT_EXT, '', $url);
@@ -326,6 +334,7 @@ class Scorpion
                 'url' => $url,
                 'title' => isset($page_meta['title']) ? $page_meta['title'] : '',
                 'description' => isset($page_meta['description']) ? $page_meta['description'] : '',
+                'type' => isset($page_meta['type']) ? $page_meta['type'] : '',
                 'excerpt' => $this->limit_words(strip_tags($page_content), $excerpt_length),
                 'author' => isset($page_meta['author']) ? $page_meta['author'] : '',
                 'date' => isset($page_meta['date']) ? $page_meta['date'] : '',
@@ -333,16 +342,6 @@ class Scorpion
                 'category' => isset($page_meta['category']) ? $page_meta['category'] : '',
                 'content' => $page_content
             );
-            /*
-             * 'title' => 'Title',
-            'description' => 'Description',
-            'author' => 'Author',
-            'date' => 'Date',
-            'robots' => 'Robots',
-            'template' => 'Template',
-            'category' => 'Category'
-             * 
-             */
 
             if ($order_by == 'date' && isset($page_meta['date'])) {
                 $sorted_pages[$page_meta['date'] . $date_id] = $data;

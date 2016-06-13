@@ -3,6 +3,7 @@ Title: Scorpion CMS - Modern flat file CMS for websites
 Description: Scorpion CMS is a modern flat-file based content management systems
 Author: Scorpion
 Date: 2015/09/30
+Type: page
 */
 
 

@@ -111,6 +111,11 @@ footer .inner a:hover {
 #chart-visitors-parent {
     height:250px;
 }
+
+#datatable td:hover {
+    cursor:pointer;
+}
+
 /*
 
 blockquote {
