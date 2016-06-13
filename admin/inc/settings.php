@@ -2,24 +2,29 @@
 
 <div id="settingmenu">
     <a href="settings/preferences"><button class="btn btn-primary">Preferences</button></a>
-    <a href="settings/account"><button class="btn btn-default">Account</button></a>
-    <a href="settings/users"><button class="btn btn-default">User administration</button></a>
-    <a href="settings/system"><button class="btn btn-default">System configuration</button></a>
-    <a href="settings/logs"><button class="btn btn-default">Logs</button></a>
-    <a href="settings/backup"><button class="btn btn-default">Backup</button></a>
+    <a href="settings/account"><button class="btn btn-primary">Account</button></a>
+    <a href="settings/user"><button class="btn btn-primary">User administration</button></a>
+    <a href="settings/system"><button class="btn btn-primary">System configuration</button></a>
+    <a href="settings/logs"><button class="btn btn-primary">Logs</button></a>
+    <a href="settings/backup"><button class="btn btn-primary">Backup</button></a>
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     var request_uri = window.location.pathname.split('/').pop();
-    
     var els = document.getElementsByClassName("btn");
-    var searchValue = request_uri;
-
+//    console.log(request_uri);
+//    console.log(els);
     for(var i = 0; i < els.length; i++){
-      if(els[i].innerHTML.indexOf(searchValue) > -1){
-        this.parentNode.className += ' active';
-      }
+//        console.log(els[i]);
+//        console.log(els[i].innerHTML.toLowerCase());
+        if(els[i].innerHTML.toLowerCase().indexOf(request_uri) > -1) {
+    //        this.parentNode.className += ' active';
+//            this.className += ' active';
+            els[i].className += ' active';
+            console.log('match found!'+els[i].innerHTML);
+//            console.log('this: ' + this);
+        }
     }
     
 //    document.getElementById('settingmenu')$('# a[href="' + permalink_nodomain + '"]').parents('li').addClass('active');
