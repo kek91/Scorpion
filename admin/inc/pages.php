@@ -1,5 +1,14 @@
 <h1>Pages</h1>
 
+<div class="alert alert-info hidden" id="infobox_missingMetaData">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <b>Information</b><br><br>
+    Red cells indicates missing meta data for the specific page in that row.<br>
+    You should correct the missing data to increase search engine optimization
+    and improve your visitors experience.<br><br>
+    <button class="btn btn-sm btn-info" onClick='dont_show_again_missingMetaData();'>Don't show again</button>
+</div>
+
 <?php
 $scorpion = new Scorpion();
 $posts = $scorpion->get_pages('page');

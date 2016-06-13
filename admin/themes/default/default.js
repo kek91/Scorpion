@@ -1,5 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     
+    if(localStorage.show_msg_missingMetaData !== "false") {
+        document.getElementById('infobox_missingMetaData').className = 'alert alert-info';
+    }
+
+    
     /* Support for closing alert boxes */
     [].forEach.call(document.querySelectorAll('.close'), function(e) {
         e.addEventListener('click', function() {
@@ -31,6 +36,19 @@ function get_funny_quote() {
     xhr.open('GET', 'http://api.icndb.com/jokes/random?limitTo=[nerdy]');
     xhr.send();
 }
+
+
+
+
+function dont_show_again_missingMetaData() {
+    localStorage.show_msg_missingMetaData = false;
+    document.getElementById('infobox_missingMetaData').className += ' hidden';
+}
+function reset_info_missingMetaData() {
+    localStorage.show_msg_missingMetaData = true;
+    document.getElementById('infobox_missingMetaData').className = 'alert alert-info';
+}
+
 
 
 
