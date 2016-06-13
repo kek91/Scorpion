@@ -49,20 +49,25 @@ class Scorpion
         $url = explode('/', $_SERVER['REQUEST_URI']);
         $url = escape($url[count($url)-1]);
 
+        /*
+         * TODO sjekk REQUEST_URI for antall. Hvis X, så betyr det at det er en subpost
+         */
+        
         if ($url) {
             if($url == strtolower($this->get_config('index'))) {
-                $file = SCORPION_DIR_CONTENT . 'index';
+                $file = SCORPION_DIR_CONTENT_PAGES . 'index';
             }
             elseif(strstr($url, 'admin')) {
-                Redirect::to(SCORPION_DIR_ADMIN.'index.php');
+                Redirect::to(SCORPION_DIR_ADMIN . 'index.php');
                 die();
             }
             else {
+                
                 $file = SCORPION_DIR_CONTENT . $url;
             }
         }
         else {
-            $file = SCORPION_DIR_CONTENT . 'index';
+            $file = SCORPION_DIR_CONTENT_PAGES . 'index';
         }
 
         if (is_dir($file)) {
@@ -74,9 +79,9 @@ class Scorpion
 
         if(file_exists($file)) {
             $content = file_get_contents($file);
-        } 
+        }
         else {
-            $content = file_get_contents(SCORPION_DIR_CONTENT . '404' . SCORPION_CONTENT_EXT);
+            $content = file_get_contents(SCORPION_DIR_CONTENT_PAGES . '404' . SCORPION_CONTENT_EXT);
             header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
         }
 
@@ -292,17 +297,17 @@ class Scorpion
      * @param string $order order "asc" or "desc"
      * @return array $sorted_pages an array of pages
      */
-    public function get_pages($filelist, $base_url, $order_by = 'date', $order = 'desc', $excerpt_length = 50)
+    public function get_pages($base_url = '', $order_by = 'date', $order = 'desc', $excerpt_length = 50)
     {
-        $config = $this->config;
-
-//        $pages = $this->get_files($config['content_dir'], CONTENT_EXT);
-        $pages = $filelist;
+//        $config = $this->config;
+//        $pages = $filelist;
+        $base_url = $this->base_url();
+        $pages = $this->get_files();
         $sorted_pages = array();
         $date_id = 0;
         foreach ($pages as $key => $page) {
             // Skip 404
-            if (basename($page) == '404' . CONTENT_EXT) {
+            if (basename($page) == '404' . SCORPION_CONTENT_EXT) {
                 unset($pages[$key]);
                 continue;
             }
@@ -315,7 +320,7 @@ class Scorpion
             $url = str_replace(SCORPION_DIR_CONTENT, $this->base_url().'/', $page);
             
 //            $url = $this->base_url() . '/' . basename(SCORPION_DIR_THEMES) . '/' . $this->get_theme(),
-            $url = str_replace('index' . CONTENT_EXT, '', $url);
+            $url = str_replace('index' . SCORPION_CONTENT_EXT, '', $url);
             $url = str_replace(SCORPION_CONTENT_EXT, '', $url);
             $data = array(
                 'url' => $url,
@@ -328,18 +333,30 @@ class Scorpion
                 'category' => isset($page_meta['category']) ? $page_meta['category'] : '',
                 'content' => $page_content
             );
+            /*
+             * 'title' => 'Title',
+            'description' => 'Description',
+            'author' => 'Author',
+            'date' => 'Date',
+            'robots' => 'Robots',
+            'template' => 'Template',
+            'category' => 'Category'
+             * 
+             */
 
             if ($order_by == 'date' && isset($page_meta['date'])) {
                 $sorted_pages[$page_meta['date'] . $date_id] = $data;
                 $date_id++;
-            } else {
+            } 
+            else {
                 $sorted_pages[$page] = $data;
             }
         }
 
         if ($order == 'desc') {
             krsort($sorted_pages);
-        } else {
+        } 
+        else {
             ksort($sorted_pages);
         }
 
