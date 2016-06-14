@@ -12,35 +12,27 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     var request_uri = window.location.pathname.split('/').pop();
+    if(request_uri == "") {
+        request_uri = "preferences";
+    }
     var els = document.getElementsByClassName("btn");
-//    console.log(request_uri);
-//    console.log(els);
     for(var i = 0; i < els.length; i++){
-//        console.log(els[i]);
-//        console.log(els[i].innerHTML.toLowerCase());
         if(els[i].innerHTML.toLowerCase().indexOf(request_uri) > -1) {
-    //        this.parentNode.className += ' active';
-//            this.className += ' active';
             els[i].className += ' active';
-            console.log('match found!'+els[i].innerHTML);
-//            console.log('this: ' + this);
         }
     }
-    
-//    document.getElementById('settingmenu')$('# a[href="' + permalink_nodomain + '"]').parents('li').addClass('active');
-//    });
 })
 </script>
 <?php
 if(isset($subpage)) {
-    if($subpage == "account") {
-        include("settings/account.php");
-    }
     if($subpage == "preferences") {
         include("settings/preferences.php");
     }
-    elseif($subpage == "users") {
-        include("settings/users.php");
+    elseif($subpage == "account") {
+        include("settings/account.php");
+    }
+    elseif($subpage == "user") {
+        include("settings/user.php");
     }
     elseif($subpage == "system") {
         include("settings/system.php");
@@ -50,6 +42,9 @@ if(isset($subpage)) {
     }
     elseif($subpage == "backup") {
         include("settings/backup.php");
+    }
+    else {
+        include("settings/preferences.php");
     }
 }
 else {
