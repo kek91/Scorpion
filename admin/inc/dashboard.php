@@ -23,7 +23,7 @@ if(isset($_SESSION['welcome'])) {
 
 <div class="alert alert-danger hidden" id="infobox_betaNotice">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <b>Note - Scorpion CMS Beta</b><br><br>
+    <b>Scorpion CMS Beta</b><br><br>
     Statistics data on "Dashboard" are for demonstration purposes and not actually real data.<br><br>
     <button class="btn btn-sm btn-danger" onClick='dont_show_again_betaNotice();'>Don't show again</button>
 </div>
