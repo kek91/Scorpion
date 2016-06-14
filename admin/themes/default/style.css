@@ -119,3 +119,36 @@ footer .inner a:hover {
 .w300 {
     width:300px;
 }
+
+.fontsize30 {
+    font-size: 30px;
+}
+
+
+.tt {
+    position: relative;
+    /*display: inline-block;*/
+    border-bottom: 1px dotted black;
+}
+
+.tt .tooltiptext {
+    visibility: hidden;
+    max-width:400px;
+    background:	rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: center;
+    padding:10px;
+    font-size:14px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+}
+.tt .tooltiptext b {
+    font-size:20px;
+}
+
+.tt:hover .tooltiptext {
+    visibility: visible;
+}

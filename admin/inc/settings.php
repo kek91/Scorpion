@@ -5,8 +5,8 @@
     <a href="settings/account"><button class="btn btn-primary">Account</button></a>
     <a href="settings/user"><button class="btn btn-primary">User administration</button></a>
     <a href="settings/system"><button class="btn btn-primary">System configuration</button></a>
-    <a href="settings/logs"><button class="btn btn-primary">Logs</button></a>
     <a href="settings/backup"><button class="btn btn-primary">Backup</button></a>
+    <a href="settings/info"><button class="btn btn-primary">Info</button></a>
 </div>
 
 <script>
@@ -37,11 +37,11 @@ if(isset($subpage)) {
     elseif($subpage == "system") {
         include("settings/system.php");
     }
-    elseif($subpage == "logs") {
-        include("settings/logs.php");
-    }
     elseif($subpage == "backup") {
         include("settings/backup.php");
+    }
+    elseif($subpage == "info") {
+        include("settings/info.php");
     }
     else {
         include("settings/preferences.php");
