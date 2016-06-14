@@ -6,6 +6,8 @@ if(isset($_SESSION['error'])) {
     echo '</div>';
     $_SESSION['error'] = null;
 }
+/*
+ * Moved to /inc/dashboard.php
 if(isset($_SESSION['welcome'])) {
     echo '<div class="alert alert-dismissable alert-success" role="alert">';
     echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
@@ -19,4 +21,5 @@ if(isset($_SESSION['welcome'])) {
     echo '<script>get_funny_quote();</script>';
     $_SESSION['welcome'] = null;
 }
+*/
 ?>

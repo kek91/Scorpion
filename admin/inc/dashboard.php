@@ -1,10 +1,37 @@
 <h1>Dashboard</h1>
 
-<div class="alert alert-danger">
+<?php
+if(isset($_SESSION['welcome'])) {
+    ?>
+    <div class="alert alert-success hidden" id="infobox_welcome">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <?php echo $_SESSION['welcome']; ?>
+    <br><br>
+    <b><div id="funny-quote"></div></b><br>
+    <a onClick="get_funny_quote();">Click here to load more funny quotes</a><br><br>
+    <button class="btn btn-sm btn-success" onClick='dont_show_again_welcome();'>Don't show again</button>
+    </div>
+    <script>get_funny_quote();</script>
+    <?php $_SESSION['welcome'] = null;
+}
+?>
+<script>
+    if(localStorage.show_msg_welcome !== "false") {
+        document.getElementById('infobox_welcome').className = 'alert alert-success';
+    }
+</script>
+
+<div class="alert alert-danger hidden" id="infobox_betaNotice">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <b>Note - Scorpion CMS Beta</b><br><br>
-    Statistics data on "Dashboard" are for demonstration purposes and not actually real data.
+    Statistics data on "Dashboard" are for demonstration purposes and not actually real data.<br><br>
+    <button class="btn btn-sm btn-danger" onClick='dont_show_again_betaNotice();'>Don't show again</button>
 </div>
+<script>
+    if(localStorage.show_msg_betaNotice !== "false") {
+        document.getElementById('infobox_betaNotice').className = 'alert alert-danger';
+    }
+</script>
 
 <!--<div class="panel panel-primary">...</div>
 <div class="panel panel-success">...</div>
