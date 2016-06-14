@@ -1,4 +1,17 @@
 <h1>Posts</h1>
+<div class="alert alert-info hidden" id="infobox_missingMetaData">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <b>Information</b><br><br>
+    Red cells indicates missing meta data for the specific post in that row.<br>
+    You should correct the missing data to increase search engine optimization
+    and improve your visitors experience.<br><br>
+    <button class="btn btn-sm btn-info" onClick='dont_show_again_missingMetaData();'>Don't show again</button>
+</div>
+<script>
+    if(localStorage.show_msg_missingMetaData !== "false") {
+        document.getElementById('infobox_missingMetaData').className = 'alert alert-info';
+    }
+</script>
 
 <?php
 $scorpion = new Scorpion();
