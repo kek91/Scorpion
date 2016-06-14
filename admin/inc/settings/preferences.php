@@ -7,7 +7,7 @@
 
 <h2>Preferences</h2>
 
-<div class="panel panel-default">
+<div class="panel panel-primary">
     <div class="panel-heading">Display or hide message boxes</div>
     <div class="panel-body">
         
@@ -35,7 +35,7 @@
 </div>
 
 
-<div class="panel panel-default">
+<div class="panel panel-primary">
     <div class="panel-heading">Theme for Scorpion CMS Admin</div>
     <div class="panel-body">
         
@@ -43,6 +43,34 @@
 
         <b>Default</b>
         
+
+    </div>
+</div>
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Funny quotes</div>
+    <div class="panel-body">
+        
+        Funny quotes is a function that collects quotes from a public API
+        and displays them in the login/welcome messagebox.<br><br>
+        
+        If the demand arises we will eventually add support to customize 
+        your funny quotes or adding other APIs.<br><br>
+        
+        Currently quotes are queried from api.icndb.com:<br>
+        <a href="http://api.icndb.com/jokes/random?limitTo=[nerdy]">
+            http://api.icndb.com/jokes/random?limitTo=[nerdy]
+        </a><br><br>
+        
+        <blockquote><div id="funny-quote"></div></blockquote>
+        <a onClick="get_funny_quote();">Click here to load more funny quotes</a><br><br>
+        
+        <script>
+            get_funny_quote();
+        </script>
+        
+        You may disable funny quotes by hiding the "Welcome" message at login above.
 
     </div>
 </div>
