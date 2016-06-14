@@ -1,10 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    
-    if(localStorage.show_msg_missingMetaData !== "false") {
-        document.getElementById('infobox_missingMetaData').className = 'alert alert-info';
-    }
 
-    
     /* Support for closing alert boxes */
     [].forEach.call(document.querySelectorAll('.close'), function(e) {
         e.addEventListener('click', function() {
@@ -28,7 +23,6 @@ function get_funny_quote() {
         if(xhr.readyState === 4) {
             if(xhr.status === 200) {
                 var obj = JSON.parse(xhr.responseText);
-                console.log(obj['value']['joke']);
                 document.getElementById('funny-quote').innerHTML = obj['value']['joke'];
             }
         }
@@ -44,13 +38,45 @@ function dont_show_again_missingMetaData() {
     localStorage.show_msg_missingMetaData = false;
     document.getElementById('infobox_missingMetaData').className += ' hidden';
 }
-function reset_info_missingMetaData() {
-    localStorage.show_msg_missingMetaData = true;
-    document.getElementById('infobox_missingMetaData').className = 'alert alert-info';
+function dont_show_again_betaNotice() {
+    localStorage.show_msg_betaNotice = false;
+    document.getElementById('infobox_betaNotice').className += ' hidden';
+}
+function dont_show_again_welcome() {
+    localStorage.show_msg_welcome = false;
+    document.getElementById('infobox_welcome').className += ' hidden';
 }
 
-
-
+function toggle_missingMetaData() {
+    if(localStorage.show_msg_missingMetaData === "true") {
+        localStorage.show_msg_missingMetaData = false;
+        document.getElementById('state_missingMetaData').innerHTML = 'Hide';
+    }
+    else if(localStorage.show_msg_missingMetaData === "false") {
+        localStorage.show_msg_missingMetaData = true;
+        document.getElementById('state_missingMetaData').innerHTML = 'Show';
+    }
+}
+function toggle_betaNotice() {
+    if(localStorage.show_msg_betaNotice === "true") {
+        localStorage.show_msg_betaNotice = false;
+        document.getElementById('state_betaNotice').innerHTML = 'Hide';
+    }
+    else if(localStorage.show_msg_betaNotice === "false") {
+        localStorage.show_msg_betaNotice = true;
+        document.getElementById('state_betaNotice').innerHTML = 'Show';
+    }
+}
+function toggle_welcome() {
+    if(localStorage.show_msg_welcome === "true") {
+        localStorage.show_msg_welcome = false;
+        document.getElementById('state_welcome').innerHTML = 'Hide';
+    }
+    else if(localStorage.show_msg_welcome === "false") {
+        localStorage.show_msg_welcome = true;
+        document.getElementById('state_welcome').innerHTML = 'Show';
+    }
+}
 
 function show_chart_visitors_monthly() {
     document.getElementById('visitors-monthly').className = 'btn btn-sm btn-primary';
