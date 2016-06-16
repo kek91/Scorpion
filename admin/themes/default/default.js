@@ -46,36 +46,57 @@ function dont_show_again_welcome() {
     localStorage.show_msg_welcome = false;
     document.getElementById('infobox_welcome').className += ' hidden';
 }
+function dont_show_again_backup() {
+    localStorage.show_msg_backup = false;
+    document.getElementById('infobox_backup').className += ' hidden';
+}
 
 function toggle_missingMetaData() {
-    if(localStorage.show_msg_missingMetaData === "true") {
-        localStorage.show_msg_missingMetaData = false;
-        document.getElementById('state_missingMetaData').innerHTML = 'Hide';
-    }
-    else if(localStorage.show_msg_missingMetaData === "false") {
+    if(localStorage.show_msg_missingMetaData === "false") {
         localStorage.show_msg_missingMetaData = true;
         document.getElementById('state_missingMetaData').innerHTML = 'Show';
     }
+    else {
+        localStorage.show_msg_missingMetaData = false;
+        document.getElementById('state_missingMetaData').innerHTML = 'Hide';
+    }
 }
 function toggle_betaNotice() {
-    if(localStorage.show_msg_betaNotice === "true") {
-        localStorage.show_msg_betaNotice = false;
-        document.getElementById('state_betaNotice').innerHTML = 'Hide';
-    }
-    else if(localStorage.show_msg_betaNotice === "false") {
+    if(localStorage.show_msg_betaNotice === "false") {
         localStorage.show_msg_betaNotice = true;
         document.getElementById('state_betaNotice').innerHTML = 'Show';
     }
+    else {
+        localStorage.show_msg_betaNotice = false;
+        document.getElementById('state_betaNotice').innerHTML = 'Hide';
+    }
 }
 function toggle_welcome() {
-    if(localStorage.show_msg_welcome === "true") {
-        localStorage.show_msg_welcome = false;
-        document.getElementById('state_welcome').innerHTML = 'Hide';
-    }
-    else if(localStorage.show_msg_welcome === "false") {
+    if(localStorage.show_msg_welcome === "false") {
         localStorage.show_msg_welcome = true;
         document.getElementById('state_welcome').innerHTML = 'Show';
     }
+    else {
+        localStorage.show_msg_welcome = false;
+        document.getElementById('state_welcome').innerHTML = 'Hide';
+    }
+}
+function toggle_backup() {
+    if(localStorage.show_msg_backup === "false") {
+        localStorage.show_msg_backup = true;
+        document.getElementById('state_backup').innerHTML = 'Show';
+    }
+    else {
+        localStorage.show_msg_backup = false;
+        document.getElementById('state_backup').innerHTML = 'Hide';
+    }
+}
+function toggle_resetall() {
+    localStorage.clear();
+    document.getElementById('state_missingMetaData').innerHTML = 'Show';
+    document.getElementById('state_betaNotice').innerHTML = 'Show';
+    document.getElementById('state_welcome').innerHTML = 'Show';
+    document.getElementById('state_backup').innerHTML = 'Show';
 }
 
 function show_chart_visitors_monthly() {
