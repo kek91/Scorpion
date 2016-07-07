@@ -309,11 +309,7 @@ class Scorpion
         $sorted_pages = array();
         $date_id = 0;
         foreach ($pages as $key => $page) {
-            // Skip 404
-            if (basename($page) == '404' . SCORPION_CONTENT_EXT) {
-                unset($pages[$key]);
-                continue;
-            }
+
             // Get title and format $page
             $page_content = file_get_contents($page);
             $page_meta = $this->read_file_meta($page_content);
@@ -331,6 +327,7 @@ class Scorpion
             $url = str_replace('index' . SCORPION_CONTENT_EXT, '', $url);
             $url = str_replace(SCORPION_CONTENT_EXT, '', $url);
             $data = array(
+                'filename' => basename($page),
                 'url' => $url,
                 'title' => isset($page_meta['title']) ? $page_meta['title'] : '',
                 'description' => isset($page_meta['description']) ? $page_meta['description'] : '',
