@@ -27,10 +27,11 @@ if(Input::exists())
         }
         else
         {
-            echo '<div class="unsuccessful"><b>Error:<br><br></b>';
+            echo '<div class="alert alert-dismissable alert-danger" role="alert">';
+            echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
             foreach($validation->errors() as $error)
             {
-                echo '- ', ucfirst($error), '<br>';
+                echo ucfirst($error), '<br>';
             }
             echo '</div>';
         }
