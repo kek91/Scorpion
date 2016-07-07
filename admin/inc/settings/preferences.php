@@ -20,20 +20,26 @@
             var boolean_backup = localStorage.show_msg_backup !== "false" ? "Show" : "Hide";
         </script>
         
-        <button class="btn btn-danger col-md-8" onClick="toggle_missingMetaData();">Missing meta data on pages/posts</button>
-        <span class="col-md-4" id="state_missingMetaData"><script>document.write(boolean_missingMetaData);</script></span>
+        <button class="btn btn-default col-md-4" onClick="toggle_missingMetaData();">Missing meta data on pages/posts</button>
+        <span class="col-md-2 btn" id="state_missingMetaData" onClick="toggle_missingMetaData();"><script>document.write(boolean_missingMetaData);</script></span>
         <br><br><br>
-        <button class="btn btn-info col-md-8" onClick="toggle_betaNotice();">Beta statistics data warning</button>
-        <span class="col-md-4" id="state_betaNotice"><script>document.write(boolean_betaNotice);</script></span>
-        <div class=""clearfix"></div>
+        <button class="btn btn-default col-md-4" onClick="toggle_betaNotice();">Beta statistics data warning</button>
+        <span class="col-md-2 btn btn-default" id="state_betaNotice" onClick="toggle_betaNotice();"><script>document.write(boolean_betaNotice);</script></span>
         <br><br><br>
-        <button class="btn btn-success col-md-8" onClick="toggle_welcome();">Welcome back at login</button>
-        <span class="col-md-4" id="state_welcome"><script>document.write(boolean_welcome);</script></span>
+        <button class="btn btn-default col-md-4" onClick="toggle_welcome();">Welcome back at login</button>
+        <span class="col-md-2 btn btn-default" id="state_welcome" onClick="toggle_welcome();"><script>document.write(boolean_welcome);</script></span>
         <br><br><br>
-        <button class="btn btn-warning col-md-8" onClick="toggle_backup();">Warning for backups</button>
-        <span class="col-md-4" id="state_backup"><script>document.write(boolean_backup);</script></span>
+        <button class="btn btn-default col-md-4" onClick="toggle_backup();">Warning for backups</button>
+        <span class="col-md-2 btn btn-default" id="state_backup" onClick="toggle_backup();"><script>document.write(boolean_backup);</script></span>
         <br><br><br>
-        <button class="btn btn-default col-md-8" onClick="toggle_resetall();">Reset back to default</button>
+        <button class="btn btn-warning col-md-4" onClick="toggle_resetall();">Reset back to default</button>
+        
+        <script>
+            document.getElementById('state_missingMetaData').className += (localStorage.show_msg_missingMetaData !== "false" ? " btn-success" : " btn-danger");
+            document.getElementById('state_betaNotice').className += (localStorage.show_msg_betaNotice !== "false" ? " btn-success" : " btn-danger");
+            document.getElementById('state_welcome').className += (localStorage.show_msg_welcome !== "false" ? " btn-success" : " btn-danger");
+            document.getElementById('state_backup').className += (localStorage.show_msg_backup !== "false" ? " btn-success" : " btn-danger");
+        </script>
 
     </div>
 </div>

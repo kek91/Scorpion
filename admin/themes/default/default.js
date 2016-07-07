@@ -55,40 +55,48 @@ function toggle_missingMetaData() {
     if(localStorage.show_msg_missingMetaData === "false") {
         localStorage.show_msg_missingMetaData = true;
         document.getElementById('state_missingMetaData').innerHTML = 'Show';
+        document.getElementById('state_missingMetaData').className = "col-md-2 btn btn-success";
     }
     else {
         localStorage.show_msg_missingMetaData = false;
         document.getElementById('state_missingMetaData').innerHTML = 'Hide';
+        document.getElementById('state_missingMetaData').className += "col-md-2 btn btn-danger";
     }
 }
 function toggle_betaNotice() {
     if(localStorage.show_msg_betaNotice === "false") {
         localStorage.show_msg_betaNotice = true;
         document.getElementById('state_betaNotice').innerHTML = 'Show';
+        document.getElementById('state_betaNotice').className = "col-md-2 btn btn-success";
     }
     else {
         localStorage.show_msg_betaNotice = false;
         document.getElementById('state_betaNotice').innerHTML = 'Hide';
+        document.getElementById('state_betaNotice').className = "col-md-2 btn btn-danger";
     }
 }
 function toggle_welcome() {
     if(localStorage.show_msg_welcome === "false") {
         localStorage.show_msg_welcome = true;
         document.getElementById('state_welcome').innerHTML = 'Show';
+        document.getElementById('state_welcome').className = "col-md-2 btn btn-success";
     }
     else {
         localStorage.show_msg_welcome = false;
         document.getElementById('state_welcome').innerHTML = 'Hide';
+        document.getElementById('state_welcome').className = "col-md-2 btn btn-danger";
     }
 }
 function toggle_backup() {
     if(localStorage.show_msg_backup === "false") {
         localStorage.show_msg_backup = true;
         document.getElementById('state_backup').innerHTML = 'Show';
+        document.getElementById('state_backup').className = "col-md-2 btn btn-success";
     }
     else {
         localStorage.show_msg_backup = false;
         document.getElementById('state_backup').innerHTML = 'Hide';
+        document.getElementById('state_backup').className = "col-md-2 btn btn-danger";
     }
 }
 function toggle_resetall() {
@@ -97,6 +105,10 @@ function toggle_resetall() {
     document.getElementById('state_betaNotice').innerHTML = 'Show';
     document.getElementById('state_welcome').innerHTML = 'Show';
     document.getElementById('state_backup').innerHTML = 'Show';
+    document.getElementById('state_missingMetaData').className = "col-md-2 btn btn-success";
+    document.getElementById('state_betaNotice').className = "col-md-2 btn btn-success";
+    document.getElementById('state_welcome').className = "col-md-2 btn btn-success";
+    document.getElementById('state_backup').className = "col-md-2 btn btn-success";
 }
 
 function show_chart_visitors_monthly() {
