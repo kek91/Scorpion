@@ -37,6 +37,9 @@ if($user->isLoggedIn()) {
     elseif($page == "logout") {
         include_once("inc/logout.php");
     }
+    elseif($page == "export-sysinfo") {
+        Redirect::to('sysinfo.php');
+    }
     else {
         include_once("inc/dashboard.php");
     }

@@ -1,4 +1,12 @@
 <?php
+include_once("../core/init.php");
+
+$user = new User();
+if(!$user->isLoggedIn()) {
+    $_SESSION['error'] = 'You must be logged in to access this page.';
+    Redirect::to('login');
+}
+
 function byte_converter($bytes) {
     $type = array("", "K", "M", "G", "T", "P", "E", "Z", "Y");
     $i = 0;
@@ -31,12 +39,6 @@ $bytes_used = byte_converter($used);
 $bytes_free = byte_converter($ds - $used);
 ?>
 
-
-<br>
-
-<a href="export-sysinfo"><button class="btn btn-default">Export system information</button></a>
-
-<br><br>
 
 <div class="panel panel-primary">
     <div class="panel-heading">Software versions</div>
