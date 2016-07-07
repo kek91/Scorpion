@@ -7,8 +7,7 @@ if(isset($_SESSION['welcome'])) {
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <?php echo $_SESSION['welcome']; ?>
     <br><br>
-    <b><div id="funny-quote"></div></b><br>
-    <a onClick="get_funny_quote();">Click here to load more funny quotes</a><br><br>
+    <b><div id="funny-quote" onClick="get_funny_quote();"></div></b><br>
     <button class="btn btn-sm btn-success" onClick='dont_show_again_welcome();'>Don't show again</button>
     </div>
     <script>get_funny_quote();</script>
