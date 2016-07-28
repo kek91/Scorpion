@@ -11,10 +11,61 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
     });
+    
+    
+    
+    
+    
+    /* Event handler for form: BACKUP */
+    var form = document.querySelector("#manualbackup");
+    var output = document.querySelector("#manualbackup_result");
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+        output.innerHTML = '<div class="loader"></div> Please wait while creating backup...';
+        var formData = new FormData(form);
+        var backuptypes = 'backup=';
+        for(var [key, value] of formData.entries()) {
+            backuptypes += value + '-';
+        }
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function (data) {
+            if(xhr.readyState === 4) {
+                if(xhr.status === 200) {
+                    output.innerHTML = xhr.responseText;
+                }
+            }
+        }
+        xhr.open('POST', 'inc/function_backup.php');
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.send(backuptypes);
+    });
+    
+    /* Dynamically disable checkbox in backup form based on selection */
+    var checkbox_scorpion = document.querySelector('input[value=Scorpion]');
+    var checkbox_content = document.querySelector('input[value=Content]');
+    checkbox_scorpion.addEventListener("click", function(e) {
+        if(checkbox_content.disabled === true) {
+            checkbox_content.disabled = false;
+        }
+        else {
+            checkbox_content.disabled = true;
+        }
+    });
 
-
+    
 });
 
+
+
+
+
+
+function backup_start_full() {
+    alert("Starting FULL backup.");
+}
+//function backup_start_incremental() {
+//    alert("Starting INCREMENTAL backup.");
+//}
 
 
 function get_funny_quote() {
@@ -56,6 +107,9 @@ var removeClass = function (elem, className) {
 
 
 
+
+
+/* Toggle functions for showing alerts */
 
 function dont_show_again_missingMetaData() {
     localStorage.show_msg_missingMetaData = false;
@@ -133,6 +187,12 @@ function toggle_resetall() {
     document.getElementById('state_welcome').className = "col-md-2 btn btn-success";
     document.getElementById('state_backup').className = "col-md-2 btn btn-success";
 }
+
+
+
+
+
+/* Charts */
 
 function show_chart_visitors_monthly() {
     document.getElementById('visitors-monthly').className = 'btn btn-sm btn-primary';
