@@ -115,6 +115,10 @@ footer .inner a:hover {
 #datatable td:hover {
     cursor:pointer;
 }
+#datatable td img {
+    max-width:100px;
+    max-height:30px;
+}
 
 .w300 {
     width:300px;

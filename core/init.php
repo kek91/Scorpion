@@ -8,6 +8,7 @@ define('SCORPION_DIR_ADMIN', SCORPION_DIR_ROOT.'admin/');
 define('SCORPION_DIR_CONTENT', SCORPION_DIR_ROOT.'content/');
 define('SCORPION_DIR_BACKUP', SCORPION_DIR_ROOT.'backup/');
 define('SCORPION_DIR_UPLOAD', SCORPION_DIR_ROOT.'content/upload/');
+define('SCORPION_DIR_MEDIA', SCORPION_DIR_ROOT.'media/');
 define('SCORPION_DIR_CACHE', SCORPION_DIR_ROOT.'content/cache/');
 define('SCORPION_DIR_THEMES', SCORPION_DIR_ROOT.'themes/');
 define('SCORPION_CONTENT_EXT', '.md');
