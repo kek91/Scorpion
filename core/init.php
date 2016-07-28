@@ -2,11 +2,11 @@
 session_start();
 
 define('SCORPION_DEVMODE', false);
+define('SCORPION_URL', 'http://localhost:1337/scorpion');
 define('SCORPION_DIR_ROOT', realpath(__DIR__ . '/..') . '/');
 define('SCORPION_DIR_ADMIN', SCORPION_DIR_ROOT.'admin/');
 define('SCORPION_DIR_CONTENT', SCORPION_DIR_ROOT.'content/');
-//define('SCORPION_DIR_CONTENT_PAGES', SCORPION_DIR_ROOT.'content/pages/');
-//define('SCORPION_DIR_CONTENT_POSTS', SCORPION_DIR_ROOT.'content/posts/');
+define('SCORPION_DIR_BACKUP', SCORPION_DIR_ROOT.'backup/');
 define('SCORPION_DIR_UPLOAD', SCORPION_DIR_ROOT.'content/upload/');
 define('SCORPION_DIR_CACHE', SCORPION_DIR_ROOT.'content/cache/');
 define('SCORPION_DIR_THEMES', SCORPION_DIR_ROOT.'themes/');
