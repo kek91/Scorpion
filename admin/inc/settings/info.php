@@ -34,7 +34,7 @@ $bytes_free = byte_converter($ds - $used);
 
 <br>
 
-<a href="export-sysinfo"><button class="btn btn-default">Export system information</button></a>
+<a href="export-sysinfo"><button class="btn btn-default">Export</button></a>
 
 <br><br>
 
