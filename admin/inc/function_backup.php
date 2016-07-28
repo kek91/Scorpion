@@ -22,12 +22,22 @@ else {
     $output = "";
     if(isset($_POST['backup'])) {
         $backuptypes = explode('-', escape($_POST['backup']));
-        $zip_filename_date = date("d-m-Y-His");
         $zip = new ZipArchive();
-        $zip->open(SCORPION_DIR_BACKUP.'Backup_'.$zip_filename_date.'.zip', ZipArchive::CREATE | ZipArchive::OVERWRITE);
+        $zip_filename = "Backup_";
+        foreach($backuptypes as $type) {
+            if($type == "Scorpion")
+                $zip_filename .= "S_";
+            elseif($type == "Website")
+                $zip_filename .= "W_";
+            elseif($type == "Content")
+                $zip_filename .= "C_";
+        }
+        $zip_filename .= date("d-m-Y-His");
+        $zip_filename .= ".zip";
+        $zip->open(SCORPION_DIR_BACKUP.$zip_filename, ZipArchive::CREATE | ZipArchive::OVERWRITE);
         
         foreach($backuptypes as $type) {
-            
+
             if($type == "Scorpion") {
                 /* Backup SCORPION CMS files */
                 $directory = new RecursiveDirectoryIterator(SCORPION_DIR_ROOT);
@@ -77,7 +87,7 @@ else {
         $zip->close();
         $output .= '<div class="alert alert-success">Backup complete!</div>';
         $output .= 'Click on the link below to download a copy of the zipped archive:<br>';
-        $output .= '<a href="'.SCORPION_URL.'/backup/Backup_'.$zip_filename_date.'.zip">'.SCORPION_URL.'/backup/Backup_'.$zip_filename_date.'.zip</a></div>';
+        $output .= '<a href="'.SCORPION_URL.'/backup/'.$zip_filename.'.zip">'.SCORPION_URL.'/backup/'.$zip_filename.'.zip</a></div>';
         exit($output);
     }
     else {

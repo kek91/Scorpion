@@ -44,8 +44,76 @@
     </div>
 </div>
 
+<div class="panel panel-success">
+    <div class="panel-heading">Stored backups</div>
+    <div class="panel-body">
+        <table class="table table-striped table-hover" id="datatable">
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Date</th>
+                    <th>Filename</th>
+                    <th>Filesize</th>
+                    <th>Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $directory = new RecursiveDirectoryIterator(SCORPION_DIR_BACKUP);
+                $mega = new RecursiveIteratorIterator($directory, RecursiveIteratorIterator::SELF_FIRST);
+                foreach ($mega as $name => $file) {
+                    if(!$file->isDir()) {
+                        $fileBackupType = "";
+                        $fileName = $file->getBasename();
+                        if(strpos($fileName, '_S_')) {
+                            $fileBackupType .= "Scorpion CMS files<br>";
+                        }
+                        if(strpos($fileName, '_C_')) {
+                            $fileBackupType .= "Scorpion CMS custom content<br>";
+                        }
+                        if(strpos($fileName, '_W_')) {
+                            $fileBackupType .= "Website files<br>";
+                        }
+                        $filePath = $file->getRealPath();
+                        $fileDate = date("d-m-Y H:i:s", $file->getMTime());
+                        $fileSize = number_format(($file->getSize() / 1024), 0, '', '');
+                        if($fileSize > 999) {
+                            $fileSize = number_format(($fileSize / 1024), 0, '', '');
+                            $fileSize .= " MB";
+                        }
+                        else {
+                            $fileSize .= " KB";
+                        }
+                        echo '<tr onclick="location.href=\''.SCORPION_URL.'/backup/'.$fileName.'\';">';
+                        $filename = explode('_', $name);
+                        echo '<td>'.$fileBackupType.'</td>';
+                        echo '<td>'.$fileDate.'</td>';
+                        echo '<td>'.$fileName.'</td>';
+                        echo '<td>'.$fileSize.'</td>';
+                        echo '<td>Click here</td>';
+                        echo '</tr>';
+                    }
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="//code.jquery.com/jquery-1.12.3.js"></script>
+<script src="themes/default/datatables.js"></script>
+<link rel="stylesheet" href="themes/default/datatables.css" type="text/css">
 <script>
-//    document.querySelector('input[value=Scorpion]').addEventListener('click', function(e) {
-//        document.querySelector('input[value=Content]').setAttribute('disabled', 'disabled');
-//    });
+$(document).ready(function() {
+    $('#datatable').DataTable({
+        "iDisplayLength":25
+    });
+} );
 </script>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Restore backup</div>
+    <div class="panel-body">
+        Automatic restore of backup files will be released in a later version of Scorpion CMS.
+    </div>
+</div>
