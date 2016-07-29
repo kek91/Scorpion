@@ -45,6 +45,7 @@ if(isset($_SESSION['welcome'])) {
             <button onClick="show_chart_visitors_weekly();" id="visitors-weekly" class="btn btn-sm btn-default">Weekly</button>
             <button type="button" class="close close-canvas" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
+        <div></div>
         <div class="panel-body">
             <canvas id="chart-visitors" id="chart-visitors-parent" height="100"></canvas>
         </div>
