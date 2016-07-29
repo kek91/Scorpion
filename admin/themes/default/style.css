@@ -225,7 +225,11 @@ label.label-w200:hover {
 }
 
 
-
 .panel-heading {
     cursor:pointer;
+}
+
+.input-group-addon {
+    min-width:100px;
+    text-align:left;
 }

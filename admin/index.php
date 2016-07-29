@@ -25,8 +25,14 @@ if($user->isLoggedIn()) {
     elseif($page == "posts") {
         include_once("inc/posts.php");
     }
+    elseif($page == "posts-new") {
+        include_once("inc/posts-new.php");
+    }
     elseif($page == "pages") {
         include_once("inc/pages.php");
+    }
+    elseif($page == "pages-new") {
+        include_once("inc/pages-new.php");
     }
     elseif($page == "media") {
         include_once("inc/media.php");
