@@ -13,6 +13,22 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     
+    /* Custom function for minimize/maximize Bootstrap panels */
+    [].forEach.call(document.querySelectorAll('.panel-heading'), function(e) {
+        e.addEventListener('click', function() {
+            var panelbody = this.nextElementSibling;
+            if(hasClass(panelbody, 'panel-body')) {
+                if(hasClass(panelbody, 'hidden')) {
+                    panelbody.className = 'panel-body';
+                }
+                else {
+                    panelbody.className = 'panel-body hidden';
+                }
+            }
+        })
+    });
+    
+    
     
     
     

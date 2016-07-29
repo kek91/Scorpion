@@ -116,8 +116,8 @@ footer .inner a:hover {
     cursor:pointer;
 }
 #datatable td img {
-    max-width:100px;
-    max-height:30px;
+    max-width:80px;
+    max-height:18px;
 }
 
 .w300 {
@@ -185,4 +185,10 @@ label.label-w200:hover {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+
+
+.panel-heading {
+    cursor:pointer;
 }
