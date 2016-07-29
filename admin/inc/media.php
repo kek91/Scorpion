@@ -3,6 +3,7 @@
 <div class="panel panel-primary">
     <div class="panel-heading">Server file browser</div>
     <div class="panel-body">
+        <form action="#" method="post" id="media-form">
         <table class="table table-striped table-hover" id="datatable">
             <thead>
                 <tr>
@@ -10,7 +11,7 @@
                     <th>Filetype</th>
                     <th>Filename</th>
                     <th>Size MB</th>
-                    <th>Preview</th>
+                    <th>Download</th>
                 </tr>
             </thead>
             <tbody>
@@ -77,7 +78,7 @@
                             $fileIcon = "icon-question-sign.png";
                         }
 
-                        echo '<tr>'; /*  onclick="location.href=\''.SCORPION_URL.'/media/'.$fileName.'\';" */ 
+                        echo '<tr onclick="selectRow(this);">'; /*  onclick="location.href=\''.SCORPION_URL.'/media/'.$fileName.'\';" */ 
 //                        echo '<td>'.$fileType.'</td>';
                         echo '<td><input type="checkbox" name="files[]" value="'.$fileName.'"></td>';
                         echo '<td><img src="themes/default/icons/'.$fileIcon.'" alt="'.$fileType.'" title="'.$fileType.'"></td>';
@@ -88,7 +89,7 @@
                             echo '<td><a href="'.SCORPION_URL.'/media/'.$fileName.'"><img src="'.SCORPION_URL.'/media/'.$fileName.'" alt="'.$fileType.'" title="'.$fileType.'"></a></td>';
                         }
                         else {
-                            echo '<td></td>';
+                            echo '<td><a href="'.SCORPION_URL.'/media/'.$fileName.'"><img src="themes/default/icons/icon-download-alt.png" alt="Download" title="Download"></a></td>';
                         }
                         echo '</tr>';
                     }
@@ -96,8 +97,62 @@
                 ?>
             </tbody>
         </table>
+        <div class="col-md-4">
+            <select class="form-control">
+                <option>- Choose action -</option>
+                <option>Delete</option>
+                <option>Archive</option>
+            </select>
+        </div>
+            
+        <div class="col-md-8">
+            <input type="submit" class="btn btn-danger" value="Do it">
+        </div>
+
+        </form>
     </div>
 </div>
+
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Upload files</div>
+    <div class="panel-body">
+        <h4>Work in progress</h4>
+        <form action="#" method="post" id="media-form">
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <script src="//code.jquery.com/jquery-1.12.3.js"></script>
 <script src="themes/default/datatables.js"></script>
@@ -110,21 +165,17 @@ $(document).ready(function() {
     
     
     document.querySelector('input[type=checkbox]').addEventListener("click", function(e) {
-        console.log("clicked");
-        
-        [].forEach.call(document.querySelectorAll('input[type=checkbox]'), function(e) {
-            var checkbox = document.querySelectorAll("input[type='checkbox']");
-            if (checkbox) {
-                // if it exists, toggle the checked property
-                checkbox.checked = !checkbox.checked;
-            }
+        var checkboxes = document.querySelectorAll('input[type=checkbox]');
+        checkboxes.forEach(function(e) {
+            e.checked = !e.checked;
         });
-        
     });
+
     
-    
-} );
+});
 
-
-
+function selectRow(row) {
+    var firstInput = row.getElementsByTagName('input')[0];
+    firstInput.checked = !firstInput.checked;
+}
 </script>
