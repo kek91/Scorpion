@@ -3,7 +3,7 @@
 <div class="panel panel-primary">
     <div class="panel-heading">Server file browser</div>
     <div class="panel-body">
-        <form action="#" method="post" id="media-form">
+        <form action="media" method="post" id="media-form">
         <table class="table table-striped table-hover" id="datatable">
             <thead>
                 <tr>
@@ -101,7 +101,7 @@
             <select class="form-control">
                 <option>- Choose action -</option>
                 <option>Delete</option>
-                <option>Archive</option>
+                <!--<option>Archive</option>-->
             </select>
         </div>
             
@@ -123,32 +123,6 @@
         </form>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
