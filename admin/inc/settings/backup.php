@@ -90,7 +90,7 @@
                         echo '<td>'.$fileDate.'</td>';
                         echo '<td>'.$fileName.'</td>';
                         echo '<td>'.$fileSize.'</td>';
-                        echo '<td>Click here</td>';
+                        echo '<td><img src="themes/default/icons/icon-download-alt.png" alt="Download" title="Download"></td>';
                         echo '</tr>';
                     }
                 }
@@ -114,6 +114,7 @@ $(document).ready(function() {
 <div class="panel panel-default">
     <div class="panel-heading">Restore backup</div>
     <div class="panel-body">
-        Automatic restore of backup files will be released in a later version of Scorpion CMS.
+        Automatic restore of backup files will be released in a later version of Scorpion CMS.<br><br>
+        In the meanwhile you'll have to manually copy files.
     </div>
 </div>
