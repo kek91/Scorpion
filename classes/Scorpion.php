@@ -47,7 +47,14 @@ class Scorpion
 //        $url = preg_replace('/\?.*/', '', $url); // Strip query string
         
         $url = explode('/', $_SERVER['REQUEST_URI']);
-        $url = escape($url[count($url)-1]);
+        if(count($url) == 4) {
+            $urldir = escape($url[count($url)-2]);
+            $url = escape($url[count($url)-1]);
+        }
+        else {
+            $urldir = "";
+            $url = escape($url[count($url)-1]);
+        }
 
         /*
          * TODO sjekk REQUEST_URI for antall. Hvis X, så betyr det at det er en subpost
@@ -56,7 +63,10 @@ class Scorpion
          * TODO eller... fortsett som før og bare list X category posts i get_pages()
          */
         
-        if ($url) {
+        if($url && $urldir) {
+            $file = SCORPION_DIR_CONTENT . $urldir .'/'. $url;
+        }
+        elseif($url) {
             if($url == strtolower($this->get_config('index'))) {
                 $file = SCORPION_DIR_CONTENT . 'index';
             }
