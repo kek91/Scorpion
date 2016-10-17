@@ -3,6 +3,7 @@ Title: Source
 Description: Source code of Scorpion CMS
 Author: Scorpion
 Date: 2015/09/30
+Type: page
 */
 
 <i class="icon-code"></i> Source code

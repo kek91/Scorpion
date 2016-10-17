@@ -1,9 +1,10 @@
 /*
-Title: Hello World
-Description: Hello world - test blog post
+Title: Hello World - Copy
+Description: Hello world - test blog post - Copy
 Author: Kim Eirik Kvassheim
-Date: 2015/09/20
-Blogpost: true
+Date: 2015/09/21
+Type: post
+Category: General
 */
 
 # Hello world

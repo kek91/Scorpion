@@ -1,0 +1,235 @@
+a:hover {
+    text-decoration:none;
+}
+.clearboth {
+    clear:both;
+}
+
+.inner {
+    width:80%;
+    margin:0 auto;
+}
+.inner h1, .inner h2, .inner h3, .inner h4 {
+    margin:30px 0;
+    color:#555555;
+}
+
+header {
+    background:#f0f0f0;
+    padding:30px 0;
+    margin-bottom:20px;
+}
+
+header h1 { 
+    margin:0; 
+    float: left;
+    font-size:45px;
+}
+header div.inner h1 a {
+    color:#555555;
+}
+header img {
+    height:60px;
+    vertical-align:middle;
+    opacity:0.7;
+}
+header a:hover {
+    color:#333333;
+}
+
+header nav {
+    float: right;
+    list-style: none;
+    margin:50px 0 0 0;
+    padding:0;
+}
+header nav ul {
+    list-style: none;
+}
+header nav ul li {
+    display: inline-block;
+    float: left;
+    margin-left:15px;
+    text-transform:lowercase;
+}
+header div.inner nav ul li a {
+    font-size:20px;
+    color:#555555;
+}
+header div.inner nav ul li a:hover {
+    color:#4183C4;
+}
+header nav li::before {
+    font-size:20px;
+    color:#dedede;
+    content:'//';
+    padding:5px;
+}
+
+
+
+/* Underline From Center */
+.hvr-underline-from-center {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow: hidden;
+}
+.hvr-underline-from-center:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  background: #2098d1;
+  height: 2px;
+  -webkit-transition-property: left, right;
+  transition-property: left, right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
+  left: 0;
+  right: 0;
+}
+
+
+
+footer {
+    background:#777777;
+    padding:60px 0;
+    margin-top:60px;
+    color:#dddddd;
+}
+footer .inner a {
+    color:#dddddd;
+}
+footer .inner a:hover {
+    color:#eeeeee;
+}
+
+.markdown-code {
+    float:left;
+    padding:5px;
+    border:1px solid #ccc;
+    width:410px;
+    overflow:auto;
+    margin-bottom:20px;
+    min-height:300px;
+}
+
+.markdown-result {
+    float:right;
+    padding:5px;
+    border:1px solid #ccc;
+    width:410px;
+    overflow:auto;
+    margin-bottom:20px;
+    min-height:300px;
+}
+
+.alert a {
+    color:#fff;
+    /*font-weight:bold;*/
+}
+.alert blockquote {
+    color:#fff;
+}
+
+#chart-visitors-parent {
+    height:250px;
+}
+
+#datatable td:hover {
+    cursor:pointer;
+}
+#datatable td img {
+    max-width:80px;
+    max-height:18px;
+}
+
+.w300 {
+    width:300px;
+}
+
+.fontsize30 {
+    font-size: 30px;
+}
+
+
+.tt {
+    position: relative;
+    /*display: inline-block;*/
+    border-bottom: 1px dotted black;
+}
+
+.tt .tooltiptext {
+    visibility: hidden;
+    max-width:400px;
+    background:	rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: center;
+    padding:10px;
+    font-size:14px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+}
+.tt .tooltiptext b {
+    font-size:20px;
+}
+
+.tt:hover .tooltiptext {
+    visibility: visible;
+}
+
+
+label.label-w200 {
+    padding:5px;
+    width:200px;
+    margin:2px 2px 2px 20px;
+}
+label.label-w200:hover {
+    background:#ffffdd;
+}
+
+.loader {
+    border: 10px solid #fff;
+    border-radius: 50%;
+    border-top: 10px solid #333;
+    border-bottom: 10px solid #333;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 1s linear infinite;
+    animation: spin 1s linear infinite;
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+.panel-heading {
+    cursor:pointer;
+}
+
+.input-group-addon {
+    min-width:100px;
+    text-align:left;
+}

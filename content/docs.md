@@ -3,6 +3,7 @@ Title: Docs
 Description: Documentation for Scorpion CMS
 Author: Scorpion
 Date: 2015/09/30
+Type: page
 */
 
 <i class="icon-document"></i> Documentation
